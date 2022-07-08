@@ -14,6 +14,8 @@ class ProjectView(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action == "list":
             return ProjectListSerializer
+        if self.action == "retrieve":
+            return ProjectListSerializer
         else:
             return ProjectPostSerializer
 
@@ -23,6 +25,8 @@ class ProjectImageView(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         if self.action == "list":
+            return ProjectListImageSerializer
+        if self.action == "retrieve":
             return ProjectListImageSerializer
         else:
             return ProjectPostImageSerializer
@@ -34,6 +38,8 @@ class ContactView(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action == "list":
             return ContactListSerializer
+        if self.action == "retrieve":
+            return ContactListSerializer
         else:
             return ContactPostSerializer
 
@@ -43,6 +49,8 @@ class ArticleCategoryView(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         if self.action == "list":
+            return ArticleListCategorySerializer
+        if self.action == "retrieve":
             return ArticleListCategorySerializer
         else:
             return ArticlePostCategorySerializer
@@ -59,6 +67,8 @@ class ArticleView(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action == "list":
             return ArticleListSerializer
+        if self.action == "retrieve":
+            return ArticleListSerializer
         else:
             return ArticlePostSerializer
 
@@ -68,6 +78,8 @@ class ServiceView(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         if self.action == "list":
+            return ServiceListSerializer
+        if self.action == "retrieve":
             return ServiceListSerializer
         else:
             return ServicePostSerializer
