@@ -15,11 +15,11 @@ class Category(models.Model):
 
     def image_tag1(self):
         if self.icon != '':
-            return mark_safe('<img src="%s%s" width="150" height="150" />' % (f'{settings.MEDIA_URL}', self.icon))
+            return mark_safe('<img src="%s%s" width="40" height="40" />' % (f'{settings.MEDIA_URL}', self.icon))
 
     def image_tag2(self):
         if self.cover != '':
-            return mark_safe('<img src="%s%s" width="150" height="150" />' % (f'{settings.MEDIA_URL}', self.cover))
+            return mark_safe('<img src="%s%s" width="40" height="40" />' % (f'{settings.MEDIA_URL}', self.cover))
 
     def __str__(self):
         return self.title
@@ -33,7 +33,7 @@ class Project(models.Model):
 
     def image_tag(self):
         if self.cover != '':
-            return mark_safe('<img src="%s%s" width="150" height="150" />' % (f'{settings.MEDIA_URL}', self.cover))
+            return mark_safe('<<img src="%s%s" width="40" height="40" />' % (f'{settings.MEDIA_URL}', self.cover))
 
     def __str__(self):
         return self.name
@@ -46,7 +46,7 @@ class ProjectImage(models.Model):
 
     def image_tag(self):
         if self.image != '':
-            return mark_safe('<img src="%s%s" width="150" height="150" />' % (f'{settings.MEDIA_URL}', self.image))
+            return mark_safe('<img src="%s%s" width="40" height="40" />' % (f'{settings.MEDIA_URL}', self.image))
 
     def __str__(self):
         return self.project.name
@@ -70,7 +70,7 @@ class ArticleCategory(models.Model):
 
     def image_tag(self):
         if self.icon != '':
-            return mark_safe('<img src="%s%s" width="150" height="150" />' % (f'{settings.MEDIA_URL}', self.icon))
+            return mark_safe('<img src="%s%s" width="40" height="40" />' % (f'{settings.MEDIA_URL}', self.icon))
 
     def __str__(self):
         return self.title
@@ -96,7 +96,7 @@ class Article(models.Model):
 
     def image_tag(self):
         if self.cover != '':
-            return mark_safe('<img src="%s%s" width="150" height="150" />' % (f'{settings.MEDIA_URL}', self.cover))
+            return mark_safe('<img src="%s%s" width="40" height="40" />' % (f'{settings.MEDIA_URL}', self.cover))
 
     def __str__(self):
         return self.title
@@ -111,7 +111,7 @@ class Service(models.Model):
 
     def image_tag(self):
         if self.cover != '':
-            return mark_safe('<img src="%s%s" width="150" height="150" />' % (f'{settings.MEDIA_URL}', self.cover))
+            return mark_safe('<img src="%s%s" width="40" height="40" />' % (f'{settings.MEDIA_URL}', self.cover))
 
     def __str__(self):
         return self.title
