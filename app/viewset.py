@@ -83,3 +83,5 @@ class ServiceView(viewsets.ModelViewSet):
             return ServiceListSerializer
         else:
             return ServicePostSerializer
+
+

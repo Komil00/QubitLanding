@@ -1,8 +1,10 @@
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 
 
 # Create your models here.
+from django.utils.safestring import mark_safe
 
 
 class Category(models.Model):
@@ -10,6 +12,14 @@ class Category(models.Model):
     icon = models.ImageField(upload_to='media')
     cover = models.ImageField(upload_to='media')
     description = models.CharField(max_length=100)
+
+    def image_tag1(self):
+        if self.icon != '':
+            return mark_safe('<img src="%s%s" width="150" height="150" />' % (f'{settings.MEDIA_URL}', self.icon))
+
+    def image_tag2(self):
+        if self.cover != '':
+            return mark_safe('<img src="%s%s" width="150" height="150" />' % (f'{settings.MEDIA_URL}', self.cover))
 
     def __str__(self):
         return self.title
@@ -21,6 +31,10 @@ class Project(models.Model):
     description = models.CharField(max_length=100)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=False)
 
+    def image_tag(self):
+        if self.cover != '':
+            return mark_safe('<img src="%s%s" width="150" height="150" />' % (f'{settings.MEDIA_URL}', self.cover))
+
     def __str__(self):
         return self.name
 
@@ -29,6 +43,10 @@ class ProjectImage(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='media')
     description = models.CharField(max_length=100)
+
+    def image_tag(self):
+        if self.image != '':
+            return mark_safe('<img src="%s%s" width="150" height="150" />' % (f'{settings.MEDIA_URL}', self.image))
 
     def __str__(self):
         return self.project.name
@@ -49,6 +67,10 @@ class Contact(models.Model):
 class ArticleCategory(models.Model):
     title = models.CharField(max_length=35)
     icon = models.ImageField(upload_to='media')
+
+    def image_tag(self):
+        if self.icon != '':
+            return mark_safe('<img src="%s%s" width="150" height="150" />' % (f'{settings.MEDIA_URL}', self.icon))
 
     def __str__(self):
         return self.title
@@ -72,6 +94,10 @@ class Article(models.Model):
     created = models.DateField()
     update = models.DateField()
 
+    def image_tag(self):
+        if self.cover != '':
+            return mark_safe('<img src="%s%s" width="150" height="150" />' % (f'{settings.MEDIA_URL}', self.cover))
+
     def __str__(self):
         return self.title
 
@@ -82,6 +108,10 @@ class Service(models.Model):
     cover = models.ImageField(upload_to='media')
     description = models.CharField(max_length=100)
     price = models.FloatField()
+
+    def image_tag(self):
+        if self.cover != '':
+            return mark_safe('<img src="%s%s" width="150" height="150" />' % (f'{settings.MEDIA_URL}', self.cover))
 
     def __str__(self):
         return self.title
