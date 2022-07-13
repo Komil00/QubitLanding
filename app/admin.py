@@ -81,24 +81,14 @@ class ArticleAdmin(admin.ModelAdmin):
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('title',)
-    list_display = ['title', 'image_tag1', 'image_tag2']
+    list_display = ['title', 'icon_image', 'cover_image']
     fields = ['title', 'icon', 'icon_image', 'cover', 'cover_image']
 
     def icon_image(self, obj):
-        return mark_safe('<img src="{url}" width="60" height="60" />'.format(
-            url=obj.icon.url,
-            width=obj.icon.width,
-            height=obj.icon.height,
-        )
-        )
+        return mark_safe(f'<img src="{obj.icon.url}" width="120" height="120" />')
 
     def cover_image(self, obj):
-        return mark_safe('<img src="{url}" width="60" height="60" />'.format(
-            url=obj.cover.url,
-            width=obj.cover.width,
-            height=obj.cover.height,
-        )
-        )
+        return mark_safe(f'<img src="{obj.cover.url}" width="120" height="120" />')
 
     readonly_fields = ['icon_image', 'cover_image']
 

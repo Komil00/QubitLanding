@@ -22,9 +22,7 @@ class ProjectView(viewsets.ModelViewSet):
     queryset = Project.objects.all()
 
     def get_serializer_class(self):
-        if self.action == "list":
-            return ProjectListSerializer
-        if self.action == "retrieve":
+        if self.action in ["list", 'retrieve']:
             return ProjectListSerializer
         else:
             return ProjectPostSerializer
@@ -41,9 +39,7 @@ class ProjectImageView(viewsets.ModelViewSet):
     queryset = ProjectImage.objects.all()
 
     def get_serializer_class(self):
-        if self.action == "list":
-            return ProjectListImageSerializer
-        if self.action == "retrieve":
+        if self.action in ['list', 'retrieve']:
             return ProjectListImageSerializer
         else:
             return ProjectPostImageSerializer
@@ -60,9 +56,7 @@ class ContactView(viewsets.ModelViewSet):
     queryset = Contact.objects.all()
 
     def get_serializer_class(self):
-        if self.action == "list":
-            return ContactListSerializer
-        if self.action == "retrieve":
+        if self.action in ['list', 'retrieve']:
             return ContactListSerializer
         else:
             return ContactPostSerializer
@@ -79,9 +73,7 @@ class ArticleCategoryView(viewsets.ModelViewSet):
     queryset = ArticleCategory.objects.all()
 
     def get_serializer_class(self):
-        if self.action == "list":
-            return ArticleListCategorySerializer
-        if self.action == "retrieve":
+        if self.action in ['list', 'retrieve']:
             return ArticleListCategorySerializer
         else:
             return ArticlePostCategorySerializer
@@ -110,9 +102,7 @@ class ArticleView(viewsets.ModelViewSet):
     queryset = Article.objects.all()
 
     def get_serializer_class(self):
-        if self.action == "list":
-            return ArticleListSerializer
-        if self.action == "retrieve":
+        if self.action in ['list', 'retrieve']:
             return ArticleListSerializer
         else:
             return ArticlePostSerializer
@@ -136,9 +126,7 @@ class ServiceView(viewsets.ModelViewSet):
         return super(self.__class__, self).get_permissions()
 
     def get_serializer_class(self):
-        if self.action == "list":
-            return ServiceListSerializer
-        if self.action == "retrieve":
+        if self.action in ['list', 'retrieve']:
             return ServiceListSerializer
         else:
             return ServicePostSerializer

@@ -2,37 +2,61 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 
-
 # Create your models here.
 from django.utils.safestring import mark_safe
 
 
 class Category(models.Model):
-    title = models.CharField(max_length=35)
-    icon = models.ImageField(upload_to='media')
-    cover = models.ImageField(upload_to='media')
+    title = models.CharField(
+        max_length=35
+    )
+    icon = models.ImageField(
+        upload_to='media',
+        blank=True,
+        null=True
+    )
+    cover = models.ImageField(
+        upload_to='media',
+        blank=True,
+        null=True
+    )
     description = models.CharField(max_length=100)
 
+    @property
     def image_tag1(self):
-        if self.icon != '':
+        if self.icon:
             return mark_safe('<img src="%s%s" width="40" height="40" />' % (f'{settings.MEDIA_URL}', self.icon))
 
+    @property
     def image_tag2(self):
-        if self.cover != '':
+        if self.cover:
             return mark_safe('<img src="%s%s" width="40" height="40" />' % (f'{settings.MEDIA_URL}', self.cover))
 
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+
 
 class Project(models.Model):
     name = models.CharField(max_length=35)
-    cover = models.ImageField(upload_to='media')
+    cover = models.ImageField(
+        upload_to='media',
+        blank=True,
+        null=True
+    )
     description = models.CharField(max_length=100)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=False)
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True
+    )
 
     def image_tag(self):
-        if self.cover != '':
+        if self.cover:
             return mark_safe('<<img src="%s%s" width="40" height="40" />' % (f'{settings.MEDIA_URL}', self.cover))
 
     def __str__(self):
@@ -41,11 +65,15 @@ class Project(models.Model):
 
 class ProjectImage(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='media')
+    image = models.ImageField(
+        upload_to='media',
+        blank=True,
+        null=True
+    )
     description = models.CharField(max_length=100)
 
     def image_tag(self):
-        if self.image != '':
+        if self.image:
             return mark_safe('<img src="%s%s" width="40" height="40" />' % (f'{settings.MEDIA_URL}', self.image))
 
     def __str__(self):
@@ -69,7 +97,7 @@ class ArticleCategory(models.Model):
     icon = models.ImageField(upload_to='media')
 
     def image_tag(self):
-        if self.icon != '':
+        if self.icon:
             return mark_safe('<img src="%s%s" width="40" height="40" />' % (f'{settings.MEDIA_URL}', self.icon))
 
     def __str__(self):
@@ -86,7 +114,11 @@ class Tag(models.Model):
 class Article(models.Model):
     title = models.CharField(max_length=35)
     category = models.ForeignKey(ArticleCategory, on_delete=models.CASCADE)
-    cover = models.ImageField(upload_to='media')
+    cover = models.ImageField(
+        upload_to='media',
+        blank=True,
+        null=True
+    )
     context = models.TextField(max_length=5000)
     tags = models.ManyToManyField(Tag)
     likes = models.PositiveSmallIntegerField()
@@ -95,7 +127,7 @@ class Article(models.Model):
     update = models.DateField()
 
     def image_tag(self):
-        if self.cover != '':
+        if self.cover:
             return mark_safe('<img src="%s%s" width="40" height="40" />' % (f'{settings.MEDIA_URL}', self.cover))
 
     def __str__(self):
@@ -105,12 +137,16 @@ class Article(models.Model):
 class Service(models.Model):
     title = models.CharField(max_length=35)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    cover = models.ImageField(upload_to='media')
+    cover = models.ImageField(
+        upload_to='media',
+        blank=True,
+        null=True
+    )
     description = models.CharField(max_length=100)
     price = models.FloatField()
 
     def image_tag(self):
-        if self.cover != '':
+        if self.cover:
             return mark_safe('<img src="%s%s" width="40" height="40" />' % (f'{settings.MEDIA_URL}', self.cover))
 
     def __str__(self):
