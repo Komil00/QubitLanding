@@ -36,8 +36,8 @@ class Category(models.Model):
         return self.title
 
     class Meta:
-        verbose_name = 'Category'
-        verbose_name_plural = 'Categories'
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
 
 
 class Project(models.Model):
@@ -61,6 +61,10 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'Проект'
+        verbose_name_plural = 'Проекти'
 
 
 class ProjectImage(models.Model):
@@ -91,6 +95,10 @@ class Contact(models.Model):
     def __str__(self):
         return self.fullname
 
+    class Meta:
+        verbose_name = 'Контакт'
+        verbose_name_plural = 'Контакти'
+
 
 class ArticleCategory(models.Model):
     title = models.CharField(max_length=35)
@@ -103,12 +111,21 @@ class ArticleCategory(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = 'Артикл Категория'
+        verbose_name_plural = 'Артикли Категория'
+
+
 
 class Tag(models.Model):
     title = models.CharField(max_length=35)
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = 'Тег'
+        verbose_name_plural = 'Теги'
 
 
 class Article(models.Model):
@@ -133,6 +150,10 @@ class Article(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = 'Артикл'
+        verbose_name_plural = 'Артикли'
+
 
 class Service(models.Model):
     title = models.CharField(max_length=35)
@@ -151,3 +172,7 @@ class Service(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = 'Сервис'
+        verbose_name_plural = 'Сервиси'
