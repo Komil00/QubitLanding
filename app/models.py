@@ -57,7 +57,7 @@ class Project(models.Model):
 
     def image_tag(self):
         if self.cover:
-            return mark_safe('<<img src="%s%s" width="40" height="40" />' % (f'{settings.MEDIA_URL}', self.cover))
+            return mark_safe('<img src="%s%s" width="40" height="40" />' % (f'{settings.MEDIA_URL}', self.cover))
 
     def __str__(self):
         return self.name
@@ -114,7 +114,6 @@ class ArticleCategory(models.Model):
     class Meta:
         verbose_name = 'Артикл Категория'
         verbose_name_plural = 'Артикли Категория'
-
 
 
 class Tag(models.Model):
